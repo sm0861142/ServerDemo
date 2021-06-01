@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解扫描，只扫描Controller注解-->
+    <context:component-scan base-package="controller"/>
+
+    <!--配置的视图解析器对象-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--开启SpringMVC注解的支持-->
+    <mvc:annotation-driven/>
+
+    <!--过滤静态资源-->
+<!--    <mvc:resources location="/css/" mapping="/css/**" />-->
+<!--    <mvc:resources location="/fonts/" mapping="/fonts/**" />-->
+<!--    <mvc:resources location="/js/" mapping="/js/**" />-->
+    <mvc:resources location="/images/" mapping="/images/**" />
+
+
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/admin/**"/>-->
+<!--            <bean class="interceptor.LoginInterceptor"></bean>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+
+    <!-- 全局异常处理器 -->
+<!--    <bean class="exception.WebExceptionResolver"></bean>-->
+
+    <!-- 配置多媒体处理器 -->
+    <!-- 注意：这里id必须填写：multipartResolver -->
+<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+<!--        &lt;!&ndash; 最大上传文件大小 &ndash;&gt;-->
+<!--        <property name="maxUploadSize" value="8388608" />-->
+<!--    </bean>-->
+</beans>

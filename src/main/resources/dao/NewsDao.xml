@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.NewsDao">
+    <resultMap id="NewsResultMap" type="News">
+        <id property="id" column="id"/>
+        <id property="title" column="title"/>
+        <id property="content" column="content"/>
+        <id property="typeId" column="typeId"/>
+        <id property="imagePath" column="imagePath"/>
+        <id property="publishDate" column="publishDate"/>
+    </resultMap>
+
+    <select id="findInternationalNewsTop10" resultMap="NewsResultMap">
+        select * from news where news.typeId=2
+        order by news.publishDate desc
+        limit 0,10
+    </select>
+
+    <select id="findNationNewsTop10" resultMap="NewsResultMap">
+        select * from news where news.typeId=1
+        order by news.publishDate desc
+        limit 0,10
+    </select>
+
+    <select id="findAllHomeNews" resultMap="NewsResultMap">
+        select * from news where news.typeId=1
+        order by news.publishDate desc
+    </select>
+</mapper>
