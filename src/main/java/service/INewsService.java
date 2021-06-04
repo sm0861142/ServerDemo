@@ -10,4 +10,5 @@ public interface INewsService {
     List<News> findNationNewsTop10();
 
     List<News> findAllHomeNews(Map<String,Object> map);
+    List<News> findNewsByType(int typeId);
 }

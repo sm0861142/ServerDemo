@@ -28,4 +28,9 @@
         select * from news where news.typeId=1
         order by news.publishDate desc
     </select>
+
+    <select id="findNewsByType" resultMap="NewsResultMap" parameterType="Int">
+        select * from news where news.typeId=#{typeId}
+        order by news.publishDate desc
+    </select>
 </mapper>

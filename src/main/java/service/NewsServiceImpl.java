@@ -30,4 +30,9 @@ public class NewsServiceImpl implements INewsService {
     public List<News> findNationNewsTop10() {
         return newsDao.findNationNewsTop10();
     }
+
+    @Override
+    public List<News> findNewsByType(int typeId) {
+        return newsDao.findNewsByType(typeId);
+    }
 }

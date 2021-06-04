@@ -3,6 +3,7 @@ package controller;
 import Until.R;
 import com.github.pagehelper.PageInfo;
 
+import entity.NewType;
 import entity.News;
 import entity.NewsListByPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import service.INewTypeService;
 import service.INewsService;
 
 
@@ -22,7 +24,8 @@ import java.util.Map;
 public class NewsController {
     @Autowired
     private INewsService iNewsService;
-
+    @Autowired
+    private INewTypeService iNewTypeService;
     @RequestMapping("/findType2Top10")
     @ResponseBody
     public R findInternationalNewsTop10(){
@@ -84,5 +87,30 @@ public class NewsController {
         }
 
         return newsListByPage;
+    }
+
+    @RequestMapping("/allNewType")
+    @ResponseBody
+    public R getAllNewType(){
+        List<NewType> newsList=iNewTypeService.getAllType();
+        R r;
+        if (newsList!=null && newsList.size()>0){
+            r=R.ok(newsList);
+        }else{
+            r= R.error();
+        }
+        return r;
+    }
+    @RequestMapping("/findTypeId")
+    @ResponseBody
+    public R findNewsByTypeId(Integer typeId){
+        List<News> newsList=iNewsService.findNewsByType(typeId);
+        R r;
+        if (newsList!=null && newsList.size()>0){
+            r=R.ok(newsList);
+        }else{
+            r= R.error();
+        }
+        return r;
     }
 }

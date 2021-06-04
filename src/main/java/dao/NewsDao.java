@@ -9,4 +9,7 @@ public interface NewsDao {
     List<News> findNationNewsTop10();
 
     List<News> findAllHomeNews();
+
+    List<News> findNewsByType(int typeId);
+
 }
